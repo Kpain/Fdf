@@ -6,16 +6,27 @@
 /*   By: kpain <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/11/24 16:59:02 by kpain             #+#    #+#             */
-/*   Updated: 2016/04/01 17:30:47 by kpain            ###   ########.fr       */
+/*   Updated: 2016/04/21 15:30:47 by kpain            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef LIBFT_H
 # define LIBFT_H
 
+# define BUFF_SIZE 42
+
 # include <unistd.h>
 # include <string.h>
 # include <stdlib.h>
+# include <fcntl.h>
+
+typedef struct			s_file
+{
+	int				fd;
+	char			*str;
+	struct s_file	*next;
+	struct s_file	*back;
+}						t_file;
 
 typedef	struct	s_list
 {
@@ -88,5 +99,6 @@ size_t			ft_strlcat(char *s1, const char *s2, size_t size);
 t_list			*ft_lstnew(void const *content, size_t content_size);
 t_list			*ft_lstmap(t_list *lst, t_list *(*f)(t_list *elem));
 char			*ft_strcsub(char const *s, unsigned int start, char c);
+int				get_next_line(int const fd, char **line);
 
 #endif
